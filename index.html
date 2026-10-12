@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- ↑ 「これはHTMLファイルです」とブラウザに伝える宣言 -->
+
+<html lang="ja">
+<!-- ↑ HTMLの始まり。lang="ja" は日本語のページであることを示す -->
+
+<head>
+  <!-- head の中は「設定情報」。ブラウザには表示されない -->
+  <meta charset="UTF-8">
+  <!-- ↑ 文字コードの指定。日本語を正しく表示するために必要 -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ↑ スマホでも正しいサイズで表示するための設定 -->
+
+  <title>自己紹介</title>
+  <!-- ↑ ブラウザのタブに表示されるタイトル -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- ↑ Google Fonts から「Noto Sans JP」を読み込む -->
+
+  <style>
+    /* CSSはここに書く。「どの要素を」「どう見せるか」を指定する */
+
+    body {
+      /* body = ページ全体に適用するスタイル */
+      margin: 0;                 /* ブラウザ標準の余白を消す */
+      min-height: 100vh;         /* 画面の高さいっぱいに広げる */
+      background: linear-gradient(135deg, #0a2a6b, #5ec8f2); /* 濃い青→水色のグラデーション */
+      font-family: "Noto Sans JP", sans-serif; /* フォントを Noto Sans JP に */
+      display: flex;             /* 中身を中央に配置するための設定 */
+      justify-content: center;   /* 横方向の中央 */
+      align-items: center;       /* 縦方向の中央 */
+      padding: 16px;             /* 画面の端との余白 */
+      box-sizing: border-box;
+    }
+
+    .card {
+      /* .card = 自己紹介カードに適用するスタイル */
+      background-color: #fff;    /* 白いカード */
+      border-radius: 20px;       /* 角を丸くする */
+      padding: 40px 48px;        /* カード内側の余白 */
+      max-width: 420px;          /* カードの最大幅 */
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); /* 影をつけてふわっと浮かせる */
+      animation: fadeInUp 0.8s ease-out; /* ページを開いたとき fadeInUp を0.8秒かけて再生 */
+    }
+
+    @keyframes fadeInUp {
+      /* @keyframes = アニメーションの動きを定義する */
+      from {
+        /* 開始時：透明で、40px 下にある */
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        /* 終了時：はっきり見えて、元の位置にある */
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      /* h1 = 大見出しに適用するスタイル */
+      color: #0a2a6b;    /* 文字色（濃い青） */
+      font-size: 40px;   /* 文字サイズを大きく */
+      font-weight: 900;  /* 太字（一番太い） */
+      margin: 0 0 16px;
+    }
+
+    p {
+      /* p = 段落テキストに適用するスタイル */
+      color: #555;      /* 文字色（グレー） */
+      line-height: 1.8; /* 行間（1.8倍に広げる） */
+    }
+
+    ul {
+      list-style: none; /* 先頭の「・」を消す */
+      padding: 0;
+      margin: 24px 0;
+    }
+
+    li {
+      /* li = リストの各項目をボタンのような見た目にする */
+      background-color: #e3f2fd; /* 背景色（薄い青） */
+      color: #0a2a6b;            /* 文字色（濃い青） */
+      border-radius: 12px;       /* 角を丸くする */
+      padding: 12px 20px;        /* 内側の余白 */
+      margin-bottom: 10px;       /* 項目どうしの間隔 */
+      cursor: pointer;           /* マウスを乗せると指のマークになる */
+      transition: background-color 0.3s, color 0.3s; /* 色を0.3秒でなめらかに変える */
+    }
+
+    li:hover {
+      /* :hover = マウスを乗せたときのスタイル */
+      background-color: #1e88e5; /* 背景色（はっきりした青） */
+      color: #fff;               /* 文字色（白） */
+    }
+
+    .skills {
+      /* .skills = スキルセクション全体 */
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      /* h2 = 中見出しに適用するスタイル */
+      color: #0a2a6b;   /* 文字色（濃い青） */
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    .skill {
+      /* .skill = スキル1つ分（名前＋バー） */
+      margin-bottom: 14px;
+    }
+
+    .skill-label {
+      /* スキル名を左、％を右に並べる */
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .bar {
+      /* .bar = バーの土台（灰色の部分） */
+      background-color: #e8eef5;
+      border-radius: 999px; /* 両端を丸くする */
+      height: 12px;
+      overflow: hidden;     /* はみ出た部分を隠す */
+    }
+
+    .bar-fill {
+      /* .bar-fill = 伸びるバー本体。幅は HTML の style で指定 */
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0a2a6b, #5ec8f2); /* 濃い青→水色のグラデーション */
+      animation: growBar 1.2s ease-out 0.6s both; /* 0.6秒待ってから1.2秒かけて伸びる */
+    }
+
+    @keyframes growBar {
+      /* 幅0%からスタートし、style で指定した幅まで伸びる */
+      from {
+        width: 0;
+      }
+    }
+
+    a {
+      color: #1e88e5;   /* リンクの色（青） */
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- body の中に「表示したい内容」を書く -->
+
+  <div class="card">
+    <!-- ↑ 自己紹介カード。中身をまとめて白いカードにする -->
+
+    <h1>寺門愛里加</h1>
+    <!-- ↑ 大見出し。ページで最も目立つタイトルに使う -->
+
+    <p>こんにちは！プログラミングを学習中です。</p>
+    <!-- ↑ 段落テキスト。普通の文章は p タグで囲む -->
+
+    <ul>
+      <!-- ul = 箇条書きリスト。li で各項目を囲む -->
+      <li>趣味: 推し活</li>
+      <li>趣味: カフェ巡り</li>
+      <li>趣味: 旅行</li>
+    </ul>
+
+    <section class="skills">
+      <!-- section = ひとまとまりの内容をグループにする -->
+      <h2>スキル</h2>
+      <!-- ↑ 中見出し。h1 の次に大きい見出し -->
+
+      <div class="skill">
+        <div class="skill-label">
+          <span>HTML/CSS</span>
+          <span>40%</span>
+        </div>
+        <div class="bar">
+          <!-- ↓ style="width: 40%" でバーの長さを決める -->
+          <div class="bar-fill" style="width: 40%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-label">
+          <span>JavaScript</span>
+          <span>20%</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width: 20%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-label">
+          <span>AI活用</span>
+          <span>80%</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width: 80%"></div>
+        </div>
+      </div>
+    </section>
+
+    <a href="https://www.google.com">Googleを開く</a>
+  </div>
+</body>
+<!-- ↑ HTMLの終わり -->
+</html>
