@@ -30,6 +30,7 @@
       background: linear-gradient(135deg, #0a2a6b, #5ec8f2); /* 濃い青→水色のグラデーション */
       font-family: "Noto Sans JP", sans-serif; /* フォントを Noto Sans JP に */
       display: flex;             /* 中身を中央に配置するための設定 */
+      flex-direction: column;    /* カードとフッターを縦に並べる */
       justify-content: center;   /* 横方向の中央 */
       align-items: center;       /* 縦方向の中央 */
       padding: 16px;             /* 画面の端との余白 */
@@ -153,6 +154,13 @@
       color: #1e88e5;   /* リンクの色（青） */
       font-weight: 700;
     }
+
+    footer {
+      /* footer = ページの一番下に表示する情報 */
+      color: #fff;       /* 文字色（白）。背景のグラデーションの上で読みやすくする */
+      font-size: 14px;
+      margin-top: 24px;  /* カードとの間隔 */
+    }
   </style>
 </head>
 
@@ -214,6 +222,11 @@
 
     <a href="https://www.google.com">Googleを開く</a>
   </div>
+
+  <footer>
+    <!-- footer = ページの下部に置く情報（著作権表示など） -->
+    &copy; 2025 Erika
+  </footer>
 </body>
 <!-- ↑ HTMLの終わり -->
 </html>
